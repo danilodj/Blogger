@@ -18,4 +18,8 @@
 	<%= link_to "Delete", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"}%>
 
 	<%= link_to "edit", edit_article_path(@article) %>
+
+	<%= button_to "archive", article_archived_path(@article), method: :patch %>
+	<p>Archived - <%= @article.archived %></p>
+
 <% end %>
