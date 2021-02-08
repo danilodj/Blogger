@@ -1,17 +1,22 @@
 class AuthorsController < ApplicationController
   before_action :set_author, only: %i[ show edit update destroy ]
 
-  before_action :zero_authors_or_authenticated, only: [:new, :create]
-
   before_action :require_login, except: [:new, :create]
 
-  def zero_authors_or_authenticated
+=begin
+
+  ukoliko nemamo ni jednog autora u bazi ili ukoliko niko nije trenutno ulogovan
+  prolazimo ovaj uslov (pada kada nemamo ni jednog autora i kada niko nije ulogovan,
+  s obzirom da je lazy-eval mala usteda na vremenu s obzirom da ce pasti uslov odmah ukoliko postoji bar neko u bazi)
+
+  def create_user
     unless Author.count == 0 || current_user
       redirect_to root_path
-      return false
+      return false #vraca false filteru za usera tako da filter pada ukoliko dodje dovde
     end
   end
 
+=end
 
 
   # GET /authors or /authors.json
@@ -69,7 +74,7 @@ class AuthorsController < ApplicationController
     end
   end
 
-  private
+private
     # Use callbacks to share common setup or constraints between actions.
     def set_author
       @author = Author.find(params[:id])

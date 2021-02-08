@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 		resources :comments
 		patch :archived
 	end
-	resources :tags
+	resources :tags, only: [ :index, :show]
 
 	resources :authors
 	

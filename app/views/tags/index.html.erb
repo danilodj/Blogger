@@ -1,13 +1,8 @@
 <h1>All Tags</h1>
 
 	<ul id = "tags">
-		<% @tags.each do |tag| %>
-		<li>
-			<%= link_to tag.name, tag_path(tag), class: 'tag_name', id: "tag_#{tag.id}" %>
-			<% if logged_in? %>
-				<%= link_to "Delete", tag_path(tag), method: :delete, data: {confirm: "Really delete the tag?"}%>
-			<% end %>
-		</li>
+		<% @tags.sort_by{|tag| tag.name}.each do |tag| %>
+			<%= link_to tag.name, tag_path(tag), class: 'tag_name' %>
 		<% end %>
 	</ul>
 
