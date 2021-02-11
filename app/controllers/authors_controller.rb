@@ -5,9 +5,9 @@ class AuthorsController < ApplicationController
 
 =begin
 
-  ukoliko nemamo ni jednog autora u bazi ili ukoliko niko nije trenutno ulogovan
-  prolazimo ovaj uslov (pada kada nemamo ni jednog autora i kada niko nije ulogovan,
-  s obzirom da je lazy-eval mala usteda na vremenu s obzirom da ce pasti uslov odmah ukoliko postoji bar neko u bazi)
+  ukoliko imamo bar jednog autora u bazi ili ukoliko niko nije trenutno ulogovan
+  prolazimo ovaj uslov (pada kada nemamo ni jednog autora ili kada je neko ulogovan,
+  s obzirom da je lazy-eval mala usteda na vremenu s obzirom da ce pasti uslov odmah ukoliko ne postoji autor u bazi)
 
   def create_user
     unless Author.count == 0 || current_user
